@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOS Construction, LLC - Premier Commercial Construction in Houston, TX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #2c4875;
+            --blue: #4a7ab8;
+            --gold: #d4a574;
+            --light-gray: #f8f9fa;
+            --dark-gray: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-4 { animation-delay: 0.4s; }
+        .animate-delay-5 { animation-delay: 0.5s; }
+        .animate-delay-6 { animation-delay: 0.6s; }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        nav.scrolled {
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 220px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            flex: 0 0 auto;
+        }
+
+        .logo {
+            height: 200px;
+            width: auto;
+            max-width: 1200px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+        }
+
+        .site-logo {
+            max-height: 200px !important;
+            width: auto;
+            padding: 15px 0;
+        }
+
+        nav.scrolled .logo {
+            height: 120px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3a5a8a 0%, #5b8fc9 100%);
+            color: white;
+            padding: 200px 2rem 140px;
+            margin-top: 220px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" x="0" y="0" fill="rgba(255,255,255,0.15)"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.4;
+            animation: float 20s infinite linear;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(200,165,105,0.15) 0%, transparent 70%);
+            animation: rotate 30s infinite linear;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cta-button {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.2rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards, pulse 2s infinite 2s;
+            box-shadow: 0 6px 20px rgba(200, 165, 105, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background: #b89555;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(200, 165, 105, 0.5);
+        }
+
+        .cta-button:active {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--gold), var(--blue));
+            border-radius: 2px;
+            animation: expandWidth 1s ease-out forwards;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 100px; }
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 1.5rem;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(46, 92, 154, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        #about::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(200, 165, 105, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out reverse;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+
+        .stat-box:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover .stat-number {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .stat-box:hover .stat-label {
+            color: var(--navy);
+        }
+
+        /* Services Section */
+        #services {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #services::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(46, 92, 154, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 10s infinite ease-in-out;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-top: 4px solid var(--blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(200, 165, 105, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-top-color: var(--gold);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover h3 {
+            color: var(--blue);
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover p {
+            color: #333;
+        }
+
+        /* Projects/Portfolio Section */
+        #projects {
+            background: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #projects::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -200px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(200, 165, 105, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card::after {
+            content: 'View Gallery';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--gold);
+            color: var(--navy);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .project-card:hover .project-image {
+            filter: brightness(0.7);
+        }
+
+        .project-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-info h3 {
+            font-size: 1.6rem;
+            color: var(--navy);
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover .project-info h3 {
+            color: var(--blue);
+        }
+
+        .project-info p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .project-details {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .detail-value {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 3% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 10px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .modal-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .close {
+            color: white;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            background: var(--light-gray);
+            text-align: center;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        /* Leadership Section */
+        #leadership {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #leadership::before {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(46, 92, 154, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 18s infinite ease-in-out;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .leader-card {
+            text-align: center;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--blue), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .leader-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .leader-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .leader-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .leader-card:hover .leader-image {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(46, 92, 154, 0.3);
+        }
+
+        .leader-card h3 {
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .leader-card:hover h3 {
+            color: var(--blue);
+        }
+
+        .leader-title {
+            color: var(--blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .leader-card:hover .leader-title {
+            color: var(--gold);
+        }
+
+        .leader-bio {
+            color: #666;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #3a5a8a 0%, #4a7ab8 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(200, 165, 105, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 22s infinite ease-in-out;
+        }
+
+        #contact::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(46, 92, 154, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 28s infinite ease-in-out reverse;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-item strong {
+            min-width: 100px;
+            color: var(--gold);
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2.5rem;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(200, 165, 105, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: #b89555;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(200, 165, 105, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .form-success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c4875;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+
+        .social-link:hover {
+            color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .social-link svg {
+            width: 50px;
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover svg {
+            transform: scale(1.1);
+            filter: drop-shadow(0 4px 8px rgba(200, 165, 105, 0.4));
+        }
+
+        .social-link span {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid,
+            .services-grid,
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="https://i.postimg.cc/0Qd94tgC/Untitled-design-1-removebg-preview.png" alt="HOS Construction Logo" class="logo site-logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Building Excellence in Houston</h1>
+                <p>Premier Commercial & Residential Construction Services Across Greater Houston</p>
+                <a href="#contact" class="cta-button">Start Your Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About HOS Construction</h2>
+            <p class="section-subtitle">Leading commercial and residential construction in Houston with commitment to quality, integrity, and client satisfaction</p>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Who We Are</h3>
+                    <p>HOS Construction, LLC is a premier commercial and residential construction company based in Houston, Texas. We specialize in delivering high-quality construction projects throughout the Greater Houston area.</p>
+                    <p>Our commitment to excellence, attention to detail, and client-focused approach has established us as a trusted partner for construction projects of all sizes, from custom homes to large-scale commercial developments.</p>
+                    <p>From initial concept to final completion, we work closely with our clients to ensure every project exceeds expectations while maintaining the highest standards of quality and safety.</p>
+                </div>
+                <div>
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive commercial and residential construction solutions tailored to your needs</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Commercial Building</h3>
+                    <p>From office buildings to retail spaces, we construct high-quality commercial structures that meet your business needs and exceed industry standards.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Residential Construction</h3>
+                    <p>Custom home building and residential projects crafted with precision, creating dream homes that reflect your lifestyle and preferences.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Tenant Improvements</h3>
+                    <p>Transform existing spaces with our expert tenant improvement services, creating functional and attractive environments for your business.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Design-Build</h3>
+                    <p>Streamline your project with our integrated design-build approach, offering seamless coordination from concept to completion.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Renovations & Remodeling</h3>
+                    <p>Breathe new life into existing structures with our comprehensive renovation services, maintaining structural integrity while modernizing spaces.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Ground-Up Construction</h3>
+                    <p>Complete construction services from site preparation to final finishes, delivering exceptional buildings from the ground up.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">A showcase of our recent commercial and residential construction achievements across Greater Houston</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">Corporate Office Building</div>
+                    <div class="project-info">
+                        <h3>Energy Corridor Office Complex</h3>
+                        <p>A state-of-the-art 50,000 sq ft office building featuring modern amenities and sustainable design elements.</p>
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Energy Corridor, Houston</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Size</span>
+                                <span class="detail-value">50,000 sq ft</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Completed</span>
+                                <span class="detail-value">2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">Retail Center</div>
+                    <div class="project-info">
+                        <h3>Memorial City Shopping Plaza</h3>
+                        <p>Multi-tenant retail center with premium finishes and contemporary design, serving the Memorial area community.</p>
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Memorial, Houston</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Size</span>
+                                <span class="detail-value">35,000 sq ft</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Completed</span>
+                                <span class="detail-value">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">Medical Facility</div>
+                    <div class="project-info">
+                        <h3>Galleria Medical Center</h3>
+                        <p>Advanced medical facility with specialized infrastructure for healthcare services, meeting all medical building standards.</p>
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Galleria, Houston</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Size</span>
+                                <span class="detail-value">25,000 sq ft</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Completed</span>
+                                <span class="detail-value">2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">Restaurant Build-Out</div>
+                    <div class="project-info">
+                        <h3>Heights Culinary Space</h3>
+                        <p>Complete restaurant build-out featuring custom kitchen design, dining areas, and outdoor patio space.</p>
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">The Heights, Houston</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Size</span>
+                                <span class="detail-value">8,000 sq ft</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Completed</span>
+                                <span class="detail-value">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">Warehouse Facility</div>
+                    <div class="project-info">
+                        <h3>Westchase Distribution Center</h3>
+                        <p>Modern warehouse and distribution facility with advanced loading docks and climate-controlled storage areas.</p>
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Westchase, Houston</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Size</span>
+                                <span class="detail-value">75,000 sq ft</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Completed</span>
+                                <span class="detail-value">2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">Mixed-Use Development</div>
+                    <div class="project-info">
+                        <h3>Midtown Urban Center</h3>
+                        <p>Contemporary mixed-use development combining retail, office, and community spaces in Houston's vibrant Midtown.</p>
+                        <div class="project-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">Midtown, Houston</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Size</span>
+                                <span class="detail-value">60,000 sq ft</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Completed</span>
+                                <span class="detail-value">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership">
+        <div class="container">
+            <h2 class="section-title">Our Leadership Team</h2>
+            <p class="section-subtitle">Experienced professionals committed to delivering excellence in every project</p>
+            
+            <div class="leadership-grid">
+                <div class="leader-card">
+                    <div class="leader-image">HK</div>
+                    <h3>Hamza Khan</h3>
+                    <div class="leader-title">Managing Director</div>
+                    <p class="leader-bio">Hamza leads HOS Construction with strategic vision and extensive experience in commercial and residential construction management across Greater Houston.</p>
+                </div>
+
+                <div class="leader-card">
+                    <div class="leader-image">OI</div>
+                    <h3>Omar Ishtiaq</h3>
+                    <div class="leader-title">Project Manager</div>
+                    <p class="leader-bio">Omar oversees project execution, ensuring timely delivery and exceptional quality standards on all HOS Construction projects.</p>
+                </div>
+
+                <div class="leader-card">
+                    <div class="leader-image">SI</div>
+                    <h3>Sami Ishtiaq</h3>
+                    <div class="leader-title">Construction Manager</div>
+                    <p class="leader-bio">Sami manages on-site operations, coordinating teams and resources to maintain the highest construction standards and safety protocols.</p>
+                </div>
+
+                <div class="leader-card">
+                    <div class="leader-image">SS</div>
+                    <h3>Saad Syed</h3>
+                    <div class="leader-title">Content Manager</div>
+                    <p class="leader-bio">Saad manages HOS Construction's digital presence and marketing strategy, showcasing our projects and connecting with clients across platforms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Get In Touch</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Ready to start your next commercial construction project? Contact us today.</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <strong>Address:</strong>
+                            <span>Houston, Texas<br>Greater Houston Area</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <span>(832) 748-7630</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <span>hosconstructionllc@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Hours:</strong>
+                            <span>Monday - Sunday: 9:00 AM - 5:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form action="https://formsubmit.co/hosconstructionllc@gmail.com" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - HOS Construction">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="text" name="_honey" style="display:none">
+                        
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Project Details</label>
+                            <textarea name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                        <div class="form-success"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle">Project Gallery</h2>
+                <p id="modalDescription"></p>
+            </div>
+            <div class="modal-body">
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Gallery images will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61587938800884" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://www.instagram.com/hosconstruction" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@hosconstruction" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                            </svg>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 HOS Construction, LLC. All rights reserved. | Commercial & Residential Construction Services in Houston, TX</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Enhanced Intersection Observer for staggered scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100); // Stagger animation
+                }
+            });
+        }, observerOptions);
+
+        // Animate elements on scroll with stagger effect
+        document.querySelectorAll('.service-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.project-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.leader-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'scale(0.8)';
+            el.style.transition = `opacity 0.8s ease ${index * 0.15}s, transform 0.8s ease ${index * 0.15}s`;
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.stat-box').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'scale(0.9)';
+            el.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
+            observer.observe(el);
+        });
+
+        // Animate section titles
+        document.querySelectorAll('.section-title').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Add hover sound effect (visual feedback)
+        document.querySelectorAll('.service-card, .project-card, .leader-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+            }
+        });
+
+        // Mouse move parallax effect for hero
+        document.querySelector('.hero').addEventListener('mousemove', (e) => {
+            const hero = e.currentTarget;
+            const rect = hero.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+            const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+            
+            hero.style.backgroundPosition = `${50 + x}% ${50 + y}%`;
+        });
+
+        // Project Gallery Modal
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const galleryGrid = document.getElementById('galleryGrid');
+        const closeBtn = document.querySelector('.close');
+
+        // Project data with gallery images
+        const projectData = {
+            'energy-corridor': {
+                title: 'Energy Corridor Office Complex',
+                description: 'A state-of-the-art 50,000 sq ft office building featuring modern amenities and sustainable design elements.',
+                images: [
+                    { caption: 'Before - Original Structure', type: 'before' },
+                    { caption: 'During Construction - Foundation', type: 'progress' },
+                    { caption: 'During Construction - Framing', type: 'progress' },
+                    { caption: 'During Construction - Interior', type: 'progress' },
+                    { caption: 'After - Exterior View', type: 'after' },
+                    { caption: 'After - Lobby & Reception', type: 'after' },
+                    { caption: 'After - Modern Office Space', type: 'after' },
+                    { caption: 'After - Conference Room', type: 'after' }
+                ]
+            },
+            'memorial-retail': {
+                title: 'Memorial City Shopping Plaza',
+                description: 'Multi-tenant retail center with premium finishes and contemporary design.',
+                images: [
+                    { caption: 'Before - Empty Lot', type: 'before' },
+                    { caption: 'During Construction - Site Prep', type: 'progress' },
+                    { caption: 'During Construction - Structure', type: 'progress' },
+                    { caption: 'After - Exterior Plaza', type: 'after' },
+                    { caption: 'After - Retail Storefronts', type: 'after' },
+                    { caption: 'After - Interior Common Area', type: 'after' }
+                ]
+            },
+            'custom-home': {
+                title: 'River Oaks Custom Home',
+                description: 'Stunning custom-built luxury residence with high-end finishes and smart home technology.',
+                images: [
+                    { caption: 'Before - Empty Lot', type: 'before' },
+                    { caption: 'During Construction - Foundation', type: 'progress' },
+                    { caption: 'During Construction - Framing', type: 'progress' },
+                    { caption: 'During Construction - Exterior', type: 'progress' },
+                    { caption: 'After - Front Elevation', type: 'after' },
+                    { caption: 'After - Grand Entryway', type: 'after' },
+                    { caption: 'After - Gourmet Kitchen', type: 'after' },
+                    { caption: 'After - Master Suite', type: 'after' },
+                    { caption: 'After - Outdoor Living', type: 'after' }
+                ]
+            },
+            'medical-facility': {
+                title: 'Galleria Medical Center',
+                description: 'Advanced medical facility with specialized infrastructure for healthcare services.',
+                images: [
+                    { caption: 'Before - Original Building', type: 'before' },
+                    { caption: 'During Renovation', type: 'progress' },
+                    { caption: 'During - Medical Equipment Installation', type: 'progress' },
+                    { caption: 'After - Modern Exterior', type: 'after' },
+                    { caption: 'After - Reception Area', type: 'after' },
+                    { caption: 'After - Examination Rooms', type: 'after' },
+                    { caption: 'After - State-of-the-Art Facilities', type: 'after' }
+                ]
+            },
+            'restaurant': {
+                title: 'Heights Culinary Space',
+                description: 'Complete restaurant build-out with custom kitchen and dining areas.',
+                images: [
+                    { caption: 'Before - Raw Space', type: 'before' },
+                    { caption: 'During Construction - Kitchen Setup', type: 'progress' },
+                    { caption: 'During Construction - Dining Area', type: 'progress' },
+                    { caption: 'After - Exterior with Patio', type: 'after' },
+                    { caption: 'After - Main Dining Room', type: 'after' },
+                    { caption: 'After - Commercial Kitchen', type: 'after' },
+                    { caption: 'After - Outdoor Seating', type: 'after' }
+                ]
+            },
+            'warehouse': {
+                title: 'Westchase Distribution Center',
+                description: 'Modern warehouse and distribution facility with advanced logistics infrastructure.',
+                images: [
+                    { caption: 'Before - Vacant Land', type: 'before' },
+                    { caption: 'During Construction - Steel Frame', type: 'progress' },
+                    { caption: 'During Construction - Interior', type: 'progress' },
+                    { caption: 'After - Exterior View', type: 'after' },
+                    { caption: 'After - Loading Docks', type: 'after' },
+                    { caption: 'After - Storage Area', type: 'after' },
+                    { caption: 'After - Climate-Controlled Section', type: 'after' }
+                ]
+            }
+        };
+
+        // Open modal when project card is clicked
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const projectId = this.getAttribute('data-project');
+                const project = projectData[projectId];
+                
+                if (project) {
+                    modalTitle.textContent = project.title;
+                    modalDescription.textContent = project.description;
+                    
+                    // Clear and populate gallery
+                    galleryGrid.innerHTML = '';
+                    project.images.forEach((img, index) => {
+                        const galleryItem = document.createElement('div');
+                        galleryItem.className = 'gallery-item';
+                        galleryItem.style.opacity = '0';
+                        galleryItem.style.transform = 'scale(0.8)';
+                        galleryItem.innerHTML = `
+                            <div class="gallery-image">${img.caption}</div>
+                            <div class="gallery-caption">${img.caption}</div>
+                        `;
+                        galleryGrid.appendChild(galleryItem);
+                        
+                        // Stagger gallery item animations
+                        setTimeout(() => {
+                            galleryItem.style.transition = 'all 0.4s ease';
+                            galleryItem.style.opacity = '1';
+                            galleryItem.style.transform = 'scale(1)';
+                        }, index * 80);
+                    });
+                    
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close modal
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target) {
+            const duration = 2000;
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+                }
+            }, 16);
+        }
+
+        // Trigger counter animation when stats are visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    const number = entry.target.querySelector('.stat-number');
+                    const targetText = number.textContent;
+                    const targetValue = parseInt(targetText.replace(/\D/g, ''));
+                    number.textContent = '0' + (targetText.includes('+') ? '+' : '') + (targetText.includes('%') ? '%' : '');
+                    animateCounter(number, targetValue);
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-box').forEach(box => {
+            statsObserver.observe(box);
+        });
+
+        // Form submission with email sending
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('.submit-btn');
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Form will submit via FormSubmit.co
+            // The page will redirect or show success automatically
+        });
+
+        // Add tilt effect to cards on hover
+        document.querySelectorAll('.service-card, .project-card, .leader-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>
